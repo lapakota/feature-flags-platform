@@ -11,9 +11,11 @@
 - изменения сначала сохраняются как черновик, применяются только после явной
 публикации, а история публикаций и откатов сохраняется.
 
-## Артефакты:
+## Артефакты
+
 - [Utility tree](01-utility-tree.md)
 - [Trade-off](02-tradeoff.md)
 - [C4 Context](views/c4-context.md)
 - [C4 Containers](views/c4-container.md)
 - [ADR](adr/0001-separate-management-and-delivery.md)
+- [Декомпозиция на сервисы](03-service-decomposition.md)

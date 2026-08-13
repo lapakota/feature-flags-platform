@@ -19,3 +19,4 @@
 - [C4 Containers](views/c4-container.md)
 - [ADR](adr/0001-separate-management-and-delivery.md)
 - [Декомпозиция на сервисы](03-service-decomposition.md)
+- [Рендеринг админки](05-rendering.md)

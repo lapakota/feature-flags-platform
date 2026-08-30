@@ -19,6 +19,7 @@
 - [C4 Containers](views/c4-container.md)
 - [ADR](adr/0001-separate-management-and-delivery.md)
 - [Декомпозиция на сервисы](03-service-decomposition.md)
+- [Event Storming и Context Map](04-event-storming-context-map.md)
 - [Рендеринг админки](05-rendering.md)
 - [Развёртывание платформы](06-deployment.md)
 - [Архитектура фронтенда админки](07-frontend-architecture.md)

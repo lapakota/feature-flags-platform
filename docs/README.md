@@ -22,3 +22,4 @@
 - [Рендеринг админки](05-rendering.md)
 - [Развёртывание платформы](06-deployment.md)
 - [Архитектура фронтенда админки](07-frontend-architecture.md)
+- [Организация фронтенда админки](08-frontend-organization.md)

@@ -23,3 +23,4 @@
 - [Развёртывание платформы](06-deployment.md)
 - [Архитектура фронтенда админки](07-frontend-architecture.md)
 - [Организация фронтенда админки](08-frontend-organization.md)
+- [Матрица рисков](09-quality-risk-matrix.md)

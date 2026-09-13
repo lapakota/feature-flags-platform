@@ -28,3 +28,4 @@
 - [SLI и SLO платформы](10-sli-slo.md)
 - [Карта деградации](11-degradation-map.md)
 - [API Gateway и BFF](12-api-gateway-bff.md)
+- [Кеширование платформы](13-caching.md)

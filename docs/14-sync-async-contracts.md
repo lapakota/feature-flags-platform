@@ -22,10 +22,22 @@
 
 ### Получение списка опубликованных флагов
 
+Версия контракта: 1. Все поля обязательны.
+
 ```http
-GET /configurations/{configurationId}/flags
+GET /v1/configurations/{configurationId}/flags
 Authorization: Bearer <token>
 ```
+
+| Поле                   | Где передаётся | Тип     | Описание                         |
+| ---------------------- | -------------- | ------- | -------------------------------- |
+| configurationId        | Путь и ответ   | string  | Идентификатор набора настроек    |
+| Authorization          | Заголовок      | string  | Токен пользователя админки       |
+| version                | Ответ          | integer | Номер опубликованной версии      |
+| flags                  | Ответ          | array   | Список флагов, может быть пустым |
+| flags[].key            | Ответ          | string  | Ключ флага                       |
+| flags[].enabled        | Ответ          | boolean | Включён ли флаг                  |
+| flags[].rolloutPercent | Ответ          | integer | Rollout от 0 до 100% с шагом 1%  |
 
 Ответ:
 
@@ -54,10 +66,23 @@ Content-Type: application/json
 
 ### Событие ConfigurationChanged
 
-Отправляется в `History Service` после создания новой версии.
+Версия контракта: 1. Все поля обязательны. Событие идёт из
+`Configuration Service` в `History Service` после публикации или rollback.
+
+| Поле            | Тип              | Описание                                                  |
+| --------------- | ---------------- | --------------------------------------------------------- |
+| contractVersion | integer          | Версия схемы: 1                                           |
+| eventId         | string           | Уникальный идентификатор события                          |
+| occurredAt      | string           | Время в UTC, формат ISO 8601                              |
+| configurationId | string           | Идентификатор набора настроек                             |
+| version         | integer          | Номер созданной версии                                    |
+| action          | string           | published или rolledBack                                  |
+| sourceVersion   | integer или null | Номер исходной версии для rollback; при публикации — null |
+| actorId         | string           | Идентификатор автора действия                             |
 
 ```json
 {
+  "contractVersion": 1,
   "eventId": "01JQ8X4J6W9Y7R2K5M3N1P0ABC",
   "occurredAt": "2026-09-04T10:15:30Z",
   "configurationId": "storefront",
@@ -67,5 +92,3 @@ Content-Type: application/json
   "actorId": "admin-228"
 }
 ```
-
-Для rollback: action — rolledBack, sourceVersion — eventId исходной версии.

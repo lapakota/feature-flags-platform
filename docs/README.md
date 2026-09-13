@@ -30,3 +30,4 @@
 - [API Gateway и BFF](12-api-gateway-bff.md)
 - [Кеширование платформы](13-caching.md)
 - [Синхронные и асинхронные взаимодействия](14-sync-async-contracts.md)
+- [Модель взаимодействия проекта](15-interaction-model.md)

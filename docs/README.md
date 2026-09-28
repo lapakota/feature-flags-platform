@@ -31,3 +31,4 @@
 - [Кеширование платформы](13-caching.md)
 - [Синхронные и асинхронные взаимодействия](14-sync-async-contracts.md)
 - [Модель взаимодействия проекта](15-interaction-model.md)
+- [Аутентификация и авторизация](16-authentication-authorization.md)

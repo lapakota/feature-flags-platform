@@ -64,6 +64,77 @@ Content-Type: application/json
 404 — конфигурация или опубликованная версия не найдена,
 503 — проверка прав недоступна.
 
+### Событие PublishedConfiguration
+
+Версия контракта: 1. Все поля обязательны.
+
+После публикации или отката `Configuration Service` отправляет событие
+в `Delivery Service`. В нём передаются все флаги и JSON-конфиги этой версии,
+а не только изменения или ссылка на данные. Дополнительно запрашивать настройки
+у `Configuration Service` не нужно.
+
+| Поле | Тип | Описание |
+|---|---|---|
+| contractVersion | integer | Версия схемы события: 1 |
+| eventId | string | Уникальный идентификатор события; при повторной отправке не меняется |
+| occurredAt | string | Время публикации в UTC, формат ISO 8601 |
+| configurationId | string | Идентификатор набора настроек |
+| version | integer | Номер опубликованной версии; при откате тоже увеличивается |
+| flags | array | Полный список флагов, может быть пустым |
+| flags[].key | string | Ключ флага |
+| flags[].enabled | boolean | false отключает флаг независимо от rollout |
+| flags[].rolloutPercent | integer | Rollout от 0 до 100% с шагом 1% |
+| flags[].variants | array | Варианты A/B-теста; пустой список, если теста нет |
+| flags[].variants[].key | string | Ключ варианта |
+| flags[].variants[].weightPercent | integer | Доля пользователей варианта внутри rollout: от 0 до 100% |
+| configs | array | Полный список JSON-конфигов, может быть пустым |
+| configs[].key | string | Ключ конфига |
+| configs[].schema | object | JSON Schema 2020-12 целиком, без ссылок на внешние схемы ($ref) |
+| configs[].value | JSON | Значение конфига, которое соответствует schema |
+
+Ключи не должны повторяться внутри одного списка. Если у флага есть варианты,
+их доли в сумме дают 100%. Новая конфигурация полностью заменяет старую:
+флаги и конфиги, которых в ней нет, больше не используются. При откате
+передаются старые настройки, но с новым номером версии.
+
+```json
+{
+  "contractVersion": 1,
+  "eventId": "01JQ8X4J6W9Y7R2K5M3N1P0ABD",
+  "occurredAt": "2026-09-04T10:15:30Z",
+  "configurationId": "storefront",
+  "version": 67,
+  "flags": [
+    {
+      "key": "new-checkout",
+      "enabled": true,
+      "rolloutPercent": 25,
+      "variants": [
+        { "key": "control", "weightPercent": 50 },
+        { "key": "test", "weightPercent": 50 }
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "key": "checkout",
+      "schema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "buttonText": { "type": "string" }
+        },
+        "required": ["buttonText"],
+        "additionalProperties": false
+      },
+      "value": {
+        "buttonText": "Оформить заказ"
+      }
+    }
+  ]
+}
+```
+
 ### Событие ConfigurationChanged
 
 Версия контракта: 1. Все поля обязательны. Событие идёт из

@@ -31,7 +31,8 @@
 
 ## Контракты
 
-Контракты получения списка флагов и события ConfigurationChanged — в [описании взаимодействий](./14-sync-async-contracts.md)
+Запрос списка флагов и события PublishedConfiguration и ConfigurationChanged
+описаны в [контрактах взаимодействий](./14-sync-async-contracts.md).
 
 ## Защита от повторов
 

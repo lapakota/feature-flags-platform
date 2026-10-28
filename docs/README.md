@@ -34,3 +34,4 @@
 - [Аутентификация и авторизация](16-authentication-authorization.md)
 - [Размещение платформы в Kubernetes](17-kubernetes.md)
 - [Анализ архитектуры платформы](18-architecture-analysis.md)
+- [Надёжность платформы](19-reliability.md)

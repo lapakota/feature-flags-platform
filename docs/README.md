@@ -36,3 +36,8 @@
 - [Анализ архитектуры платформы](18-architecture-analysis.md)
 - [Надёжность платформы](19-reliability.md)
 - [Надёжность и наблюдаемость платформы](20-reliability-observability.md)
+- [Изменяемость платформы](21-modifiability.md)
+- [Согласованность данных](22-data-consistency.md)
+- [Серверное кеширование](23-server-caching.md)
+- [Масштабирование данных](24-scaling.md)
+- [Итоговое архитектурное решение](25-final-solution.md)
